@@ -6,7 +6,6 @@ import inquirer from "inquirer";
 
 const AuthHeader = () => ux.styledHeader("Authenticate:");
 
-
 export async function signInWithGoogle(): Promise<UserCredential> {
     const userCredential: UserCredential = await signInWithBrowser(auth, [new GoogleAuthProvider(), new FacebookAuthProvider()]);
     return userCredential;

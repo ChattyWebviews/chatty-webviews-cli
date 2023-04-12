@@ -1,6 +1,6 @@
 import { createNodeFilePersistence } from "@vmutafov/firebase-auth-node-persistence";
-import { getApp, initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { FirebaseOptions, getApp, initializeApp } from "firebase/app";
+import { getAuth, initializeAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore/lite";
 import { getStorage } from "firebase/storage";
 import { existsSync, readFileSync } from "node:fs";
@@ -28,16 +28,21 @@ const nodeFilePersistence = createNodeFilePersistence({
     }
 });
 
-export const app = initializeApp({
-    apiKey: "AIzaSyB6Kld70q7n2MZAHtbRCt8R5yTrrXKmdOc",
-    authDomain: "appwraps-releases.firebaseapp.com",
-    projectId: "appwraps-releases",
-    storageBucket: "appwraps-releases.appspot.com",
-    messagingSenderId: "523627059398",
-    appId: "1:523627059398:web:c737e1dfb9aad15f095fc7"
-});
+const firebaseConfig = createFirebaseConfigFromEnvVars();
+export const app = initializeApp(firebaseConfig);
+
+function createFirebaseConfigFromEnvVars(): FirebaseOptions {
+    return {
+        apiKey: process.env.FIREBASE_API_KEY,
+        authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+        projectId: process.env.FIREBASE_PROJECT_ID,
+        storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+        appId: process.env.FIREBASE_APP_ID
+    }
+}
 
 export const db = getFirestore();
 export const storage = getStorage();
-export const auth = getAuth();
-await auth.setPersistence(nodeFilePersistence);
+export const auth = initializeAuth(app, {
+    persistence: nodeFilePersistence
+});

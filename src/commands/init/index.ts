@@ -1,8 +1,5 @@
-import { Args, Command, Flags, ux } from '@oclif/core'
+import { Command, ux } from '@oclif/core'
 import inquirer from 'inquirer';
-import { writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
-import { cwd } from 'node:process';
 import { loginOrRegisterWithPrompt } from '../../services/auth.js';
 import { ChattyWebViewsAppConfig, ChattyWebViewsAppModules, ChattyWebViewsAppModulesConfig, ChattyWebViewsConfig, Email, ModuleDirectoryPath } from '../../services/types/config.js';
 import { storeChattyWebViewsConfig } from '../../services/config.js';
@@ -23,7 +20,7 @@ const ConfirmConfigHeader = () => {
 }
 
 export default class Init extends Command {
-    static description = 'Say hello'
+    static description = 'Initialize the configurations for a ChattyWebViews application'
 
     static examples = [
         `$ chatty init`,

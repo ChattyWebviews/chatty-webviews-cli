@@ -3,17 +3,14 @@ import { CreateReleaseProps } from "../../services/types/props.js";
 import { ChattyWebViewsConfig } from "../../services/types/config.js";
 import { collectModulesForRelease, getChattyWebViewsConfigOrThrow } from '../../services/config.js';
 import { ReleaseService } from '../../services/release.js';
-import { db, storage } from '../../services/init/firebase-initializer.js';
 
 export default class Release extends Command {
-    static description = 'Relase a new version of an ChattyWebViews application module'
+    static description = 'Relase a new version of a ChattyWebViews application or module from a CI/CD environment by passing all the required parameters'
 
     static examples = [
-        `$ chatty ci release --version 12.1 --name 'test release' --modules moduleA --target targetA`,
-        `$ chatty ci release --version 12.1 --name 'test release' --modules moduleA`,
-        `$ chatty ci release --version 12.1 --name 'test release' --modules moduleA --overwrite true`,
-        `$ chatty ci release --version 12.1 --name 'test release'`,
         `$ chatty ci release --version 12.1`,
+        `$ chatty ci release --version 12.1 --name 'test release'`,
+        `$ chatty ci release --version 12.1 --name 'test release' --modules moduleA moduleB`,
     ];
 
     static flags = {
@@ -30,18 +27,6 @@ export default class Release extends Command {
             description: 'Release only a set of modules by their names as specified in the `chatty-webviews.json` file.',
             multiple: true,
             required: false,
-        }),
-        'target': Flags.string({
-            description: 'Release only to a set of targets by their names as specified in the `chatty-webviews.json` file.',
-            multiple: true,
-            exclusive: ['overwrite'],
-            required: false,
-        }),
-        'overwrite': Flags.boolean({
-            description: 'Overwrite previously targeted users',
-            default: false,
-            exclusive: ['users'],
-            required: true,
         }),
     };
 

@@ -1,11 +1,10 @@
-import { Args, Command, Flags, ux } from '@oclif/core'
-import { CreateReleaseProps, ModuleReleaseProps } from "../../services/types/props.js";
-import { ChattyWebViewsConfig, Email, ModuleDirectoryPath } from "../../services/types/config.js";
+import { Command, ux } from '@oclif/core'
+import { CreateReleaseProps } from "../../services/types/props.js";
+import { ChattyWebViewsConfig } from "../../services/types/config.js";
 import { loginWithPrompt } from '../../services/auth.js';
 import inquirer from 'inquirer';
 import { collectModulesForRelease, getChattyWebViewsConfigOrThrow } from '../../services/config.js';
 import { ReleaseService } from '../../services/release.js';
-import { db, storage } from '../../services/init/firebase-initializer.js';
 
 const ReleaseConfig = "Release configuration:";
 
@@ -15,13 +14,10 @@ const ReleaseConfigHeader = () => {
 };
 
 export default class Release extends Command {
-    static description = 'Relase a new version of an application'
+    static description = 'Relase a new version of a ChattyWebViews application or module'
 
     static examples = [
-        `$ chatty release --version 12.1 --release-name 'test release' --module-name moduleA --module-path ./moduleA --target-users example1@mail.com example2@mail.com`,
-        `$ chatty release --version 12.1 --release-name 'test release' --module-name moduleA --module-path ./moduleA --target-all`,
-        `$ chatty release --version 12.1 --release-name 'test release' --module-name moduleA --module-path ./moduleA`,
-        `$ chatty release --app <app-id> --version 12.1 --release-name 'test release' --module-name moduleA --module-path ./moduleA`,
+        `$ chatty release`,
     ];
 
     static flags = {};
