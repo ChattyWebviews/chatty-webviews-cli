@@ -20,7 +20,7 @@
   "dependencies": {
     "@oclif/core": "^2",
     "@oclif/plugin-help": "^5",
-    "@oclif/plugin-plugins": "^2.4.0",
+    "@oclif/plugin-plugins": "^2.4.7",
     "@types/inquirer": "^9.0.3",
     "@vmutafov/firebase-auth-node-browser": "^0.1.0",
     "@vmutafov/firebase-auth-node-persistence": "^0.1.1",
