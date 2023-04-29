@@ -24,7 +24,7 @@
     "@types/inquirer": "^9.0.3",
     "@vmutafov/firebase-auth-node-browser": "^0.1.0",
     "@vmutafov/firebase-auth-node-persistence": "^0.1.1",
-    "firebase": "9.17.2",
+    "firebase": "9.21.0",
     "adm-zip": "^0.5.10",
     "api": "^5.0.7",
     "express": "^4.18.2",
