@@ -24,17 +24,19 @@ After that, if you haven't already, you should enable the Authentication, Firest
 The last bit of configuring the necessary infrastructure is deploying the Chatty Webviews backend by following [its README](https://github.com/ChattyWebviews/chatty-webviews-backend).
 
 <!-- toc -->
+* [Description](#description)
+* [Infrastructure setup](#infrastructure-setup)
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g @azbouki/chatty-webviews-cli
+$ npm install -g @chatty-webviews/cli
 $ chatty COMMAND
 running command...
 $ chatty (--version)
-@azbouki/chatty-webviews-cli/0.0.0 darwin-arm64 node-v16.16.0
+@chatty-webviews/cli/0.1.0 darwin-arm64 node-v16.16.0
 $ chatty --help [COMMAND]
 USAGE
   $ chatty COMMAND
@@ -43,28 +45,10 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`chatty help [COMMANDS]`](#chatty-help-commands)
 * [`chatty ci release`](#chatty-ci-release)
+* [`chatty help [COMMANDS]`](#chatty-help-commands)
 * [`chatty init`](#chatty-init)
 * [`chatty release`](#chatty-release)
-
-## `chatty help [COMMANDS]`
-
-Display help for chatty.
-
-```
-USAGE
-  $ chatty help [COMMANDS] [-n]
-
-ARGUMENTS
-  COMMANDS  Command to show help for.
-
-FLAGS
-  -n, --nested-commands  Include all nested commands in the output.
-
-DESCRIPTION
-  Display help for chatty.
-```
 
 ## `chatty ci release`
 
@@ -91,6 +75,26 @@ EXAMPLES
   $ chatty ci release --version 12.1 --name 'test release' --modules moduleA moduleB
 ```
 
+## `chatty help [COMMANDS]`
+
+Display help for chatty.
+
+```
+USAGE
+  $ chatty help [COMMANDS] [-n]
+
+ARGUMENTS
+  COMMANDS  Command to show help for.
+
+FLAGS
+  -n, --nested-commands  Include all nested commands in the output.
+
+DESCRIPTION
+  Display help for chatty.
+```
+
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.8/src/commands/help.ts)_
+
 ## `chatty init`
 
 Initialize the configurations for a ChattyWebViews application
@@ -106,6 +110,8 @@ EXAMPLES
   $ chatty init
 ```
 
+_See code: [dist/commands/init/index.ts](https://github.com/vmutafov/hello-world/blob/v0.1.0/dist/commands/init/index.ts)_
+
 ## `chatty release`
 
 Relase a new version of a ChattyWebViews application or module
@@ -120,4 +126,6 @@ DESCRIPTION
 EXAMPLES
   $ chatty release
 ```
+
+_See code: [dist/commands/release/index.ts](https://github.com/vmutafov/hello-world/blob/v0.1.0/dist/commands/release/index.ts)_
 <!-- commandsstop -->

@@ -33,7 +33,10 @@ export default class Release extends Command {
         await loginWithPrompt();
 
         const createReleaseProps: CreateReleaseProps = await this.createReleaseProps(chattyWebViewsConfig);
-        await this.releaseService.createRelease(createReleaseProps)
+
+        if (await this.confirmRelease(createReleaseProps)) {
+            await this.releaseService.createRelease(createReleaseProps)
+        }
     }
 
     private async createReleaseProps(chattyWebViewsConfig: ChattyWebViewsConfig): Promise<CreateReleaseProps> {
@@ -107,5 +110,18 @@ export default class Release extends Command {
         }]);
 
         return modulesAnswers.modules;
+    }
+
+    private async confirmRelease(releaseProps: CreateReleaseProps): Promise<boolean> {
+        let confirmMessage = `Is this release config ok? \n ${JSON.stringify(releaseProps, null, 2)}`;
+        const answers = await inquirer.prompt([
+            {
+                name: 'isConfigConfirmed',
+                message: confirmMessage,
+                type: 'confirm'
+            }
+        ]);
+
+        return answers.isConfigConfirmed;
     }
 }
