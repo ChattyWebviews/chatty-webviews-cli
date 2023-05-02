@@ -35,7 +35,7 @@
     "rev-hash": "^4.0.0"
   },
   "devDependencies": {
-    "@oclif/test": "^2.3.10",
+    "@oclif/test": "^2.3.17",
     "@types/adm-zip": "^0.5.0",
     "@types/chai": "^4",
     "@types/express": "^4.17.17",
